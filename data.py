@@ -33,9 +33,14 @@ def generate_data():
     P1_cnt = 10
     P2_cnt = 10
     P3_cnt = 10
-    sample_cnt = 300000
-    for i in sample_cnt:
-        X1 = np
+    sample_cnt = 1
+    for i in range(sample_cnt):
+        X1 = np.random.rand(1, 4)*200
+
+        P1 = np.random.rand(1, 3)*40 - 10
+        P2 = np.random.rand(1, 3)*40 - 10
+        P3 = np.random.rand(1, 4)*40 - 10
+        print(np.concatenate((X1, P1, P2, P3), axis=1))
     pass
 
 
@@ -56,8 +61,7 @@ def compare_plot(x, y, func):
 
 
 def main():
-    x, y = get_data(100, func2)
-    compare_plot(x, y, func2)
+    generate_data()
 
 
 if __name__ == "__main__":
