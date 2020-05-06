@@ -1,9 +1,10 @@
 import tensorflow as tf
 import numpy as np
 from data import *
-import model
+from LSTM import *
+
 import matplotlib.pyplot as plt
-test_num = 100
+
 
 def main():
     test_x, test_y = get_data(test_num, func1)

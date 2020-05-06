@@ -16,7 +16,13 @@ def main():
 
     X = tf.placeholder(tf.float32, [None, 1], name="input")
     Y = tf.placeholder(tf.float32, [None, 1], name="output")
-    predict, _, _ = model.cell(X, None, None, "cell", tf.AUTO_REUSE)
+    pre_ht = None
+    pre_ct = None
+    for i in range(2):
+        predict, ht, ct = model.cell(X, pre_ht, pre_ct, "cell%d" % i, reuse=False)
+        pre_ht = ht
+        pre_ct = ct
+    #predict, _, _ = model.cell(X, None, None, "cell", tf.AUTO_REUSE)
     loss = tf.reduce_mean(tf.square(Y-predict))
     optimizer = tf.train.AdamOptimizer(learning_rate).minimize(loss)
 
